@@ -1,12 +1,8 @@
 # T8 Promisify Polling
 
-*Convert a polling to an easier-to-handle async function*
-
-[![npm](https://img.shields.io/npm/v/@t8/promisify-polling?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/promisify-polling) ![Lightweight](https://img.shields.io/bundlephobia/minzip/@t8/promisify-polling?label=minzip&labelColor=345&color=46e)
+Convert a polling to an easier-to-handle async function
 
 Interaction with a polling (i.e. a scheduled repeated action) looks similar to interaction with an asynchronous function: calling and waiting for its resolution before proceeding to other tasks. This package helps reduce the effort (and amount of code) required to set up a polling by creating an async function for a repeated action that is resolved when a defined condition is met.
-
-Installation: `npm i @t8/promisify-polling`
 
 ## Contents
 
