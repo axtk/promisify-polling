@@ -1,4 +1,4 @@
-# T8 Promisify Polling
+# promisify-polling
 
 Convert a polling to an easier-to-handle async function
 
@@ -40,7 +40,7 @@ In the examples below, this function is passed to the `schedule` utility as a pa
 ### Constant finite polling
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 3000,
@@ -55,7 +55,7 @@ Here, `getData(params)` is resolved after 10 iterations have passed, with each i
 ### Constant infinite polling
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 3000,
@@ -70,7 +70,7 @@ Here, `getData(params)` calls `poll(params)` every 3 seconds after the previous 
 ### Constant conditional polling
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 3000,
@@ -89,7 +89,7 @@ Here, `getData(params)` is resolved when `poll(params)` returns `{ status: "comp
 ### Non-constant conditional polling (including exponential backoff)
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: (data, iteration) => {
@@ -108,7 +108,7 @@ Here, `getData(params)` is resolved when `poll(params)` returns `{ status: "comp
 ### Interruption with an exception
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: (data, iteration) => {
@@ -130,7 +130,7 @@ Here, the `Promise` returned from `getData(params)` will be rejected with an ins
 ### Single delayed call
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 1000,
@@ -146,7 +146,7 @@ As an edge case, a polling can be reduced to a single delayed call. Here, `getDa
 The scheduled function returned from `schedule()` can be interrupted with a timeout, if it's set with the `timeout` option:
 
 ```js
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 3000,
@@ -167,7 +167,7 @@ let data = await getData(params);
 The timeout error can be intercepted with the following check in the `catch` block:
 
 ```js
-import { isScheduleTimeoutError, schedule } from "@t8/promisify-polling";
+import { isScheduleTimeoutError, schedule } from "promisify-polling";
 
 let getData = schedule(poll, {
   delay: 3000,
@@ -193,7 +193,7 @@ With React, it is generally necessary to clean up pollings started by a componen
 
 ```jsx
 import { useEffect, useRef, useState } from "react";
-import { schedule } from "@t8/promisify-polling";
+import { schedule } from "promisify-polling";
 
 const Task = ({ id }) => {
   let isMounted = useRef(false);
@@ -249,7 +249,7 @@ const Task = ({ id }) => {
 When the returned value of the polling function is a `boolean` value (or can be expressed as such), waiting for a condition to be met can be further simplified with the `waitFor()` utility function:
 
 ```js
-import { waitFor } from "@t8/promisify-polling";
+import { waitFor } from "promisify-polling";
 
 async function isComplete() {
   let response = await fetch("/status");
@@ -274,7 +274,7 @@ await waitFor(isComplete, iteration => iteration < 5 ? 1000 : 5000);
 `waitFor()` can also be used to wait for a DOM element to appear in the DOM tree:
 
 ```js
-import { waitFor } from "@t8/promisify-polling";
+import { waitFor } from "promisify-polling";
 
 await waitFor(() => document.querySelector('.target') !== null, 100);
 ```
@@ -284,7 +284,7 @@ await waitFor(() => document.querySelector('.target') !== null, 100);
 Waiting with `waitFor()` can be interrupted with a timeout, if it's set with the third parameter:
 
 ```js
-import { waitFor } from "@t8/promisify-polling";
+import { waitFor } from "promisify-polling";
 
 function hasTarget() {
   return document.querySelector('.target') !== null;
@@ -300,7 +300,7 @@ await waitFor(hasTarget, 100, 5000);
 The timeout error can be intercepted with the following check in the `catch` block:
 
 ```js
-import { isScheduleTimeoutError, waitFor } from "@t8/promisify-polling";
+import { isScheduleTimeoutError, waitFor } from "promisify-polling";
 
 function hasTarget() {
   return document.querySelector(".target") !== null;
@@ -322,7 +322,7 @@ Like with `schedule()`, `waitFor()` can be stopped when a React component hostin
 
 ```jsx
 import { useEffect, useRef, useState } from "react";
-import { waitFor } from "@t8/promisify-polling";
+import { waitFor } from "promisify-polling";
 
 const Task = ({ id }) => {
   let isMounted = useRef(false);
