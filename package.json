@@ -1,5 +1,5 @@
 {
-  "name": "@t8/promisify-polling",
+  "name": "promisify-polling",
   "version": "1.0.12",
   "description": "Convert a polling to an easier-to-handle async function",
   "main": "./dist/index.cjs",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/t8js/promisify-polling.git"
+    "url": "git+https://github.com/axtk/promisify-polling.git"
   },
   "keywords": [
     "polling",
